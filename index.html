@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#c7cbcc">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#273a43">
+    <script>
+        if (matchMedia('(prefers-color-scheme: dark)').media === 'not all') {
+            document.documentElement.style.display = 'none';
+            document.head.insertAdjacentHTML(
+                'beforeend',
+                '<link rel="stylesheet" href="/src/css/style.css" onload="document.documentElement.style.display=\'\'">'
+            );
+        }
+    </script>
+    <link rel="icon" type="image/svg+xml" href="/src/assets/favicon/icon.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="apple-touch-icon" href="/src/assets/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="stylesheet" href="/src/css/light.css" media="(prefers-color-scheme: light)">
+    <link rel="stylesheet" href="/src/css/dark.css" media="(prefers-color-scheme: dark)">
+    <link rel="stylesheet" href="/src/css/style.css">
+    <title>Vite + Vue + TS</title>
+</head>
+<body>
+<div id="app"></div>
+<script type="module" src="/src/main.ts"></script>
+</body>
+</html>

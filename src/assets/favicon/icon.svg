@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32.007 28" width="256" height="256">
+    <style>
+      @media (prefers-color-scheme: dark) {
+        .window-bright { fill: #FFC600 }
+        .window-dim { fill: #BF9F30 }
+        .tent-butt-red { fill: #904D48 }
+        .tent-butt-white { fill: #ACADAD }
+        .bush { fill: #1A7A6A }
+        .bush-shadow { fill: #156255 }
+      }
+    </style>
+    <path fill="#e4e7e7" d="M3.003 2h26v26h-26V2z"></path>
+    <path fill="#b6b9b9" d="M3.003 11h26v2h-26v-2z"></path>
+    <path fill="#ccd0d2" d="M5.023 0h21.932l2.051 1.996H3.001L5.023 0z"></path>
+    <path class="window-bright" fill="#26a6d1" d="M5.003 26h6V11h-6v15zm8 0h6V11h-6v15zm8-15v15h6V11h-6z"></path>
+    <path class="tent-butt-white" fill="#e4e7e7"
+          d="m31.996 7.991-3.209-2.993H3.222L.011 7.991H.003v2.003c0 .553.449 1.002 1 1.002h30a1 1 0 0 0 1-1.002V7.991h-.007z"
+    ></path>
+    <path class="window-dim" fill="#2295bc"
+          d="M18.003 23h1v3h-1zM9.003 21v-3h-4v8h6v-5zM13.003 21h2v5h-2zM22.003 18v5h-1v3h6v-8zM5.003 11h6v2h-6zM21.003 11h6v2h-6zM13.003 11h6v2h-6z"
+    ></path>
+    <path class="bush-shadow" fill="#419687"
+          d="M7.003 22h-4a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2zm22 0h-4a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2z"
+    ></path>
+    <path class="bush" fill="#51bba8"
+          d="M29.003 22h-4c-.293 0-.569.066-.82.18a1.99 1.99 0 0 0-.18.82v2a2 2 0 0 0 2 2h4c.293 0 .569-.066.82-.18a1.99 1.99 0 0 0 .18-.82v-2a2 2 0 0 0-2-2zm-22 0h-4c-.293 0-.569.066-.82.18a1.99 1.99 0 0 0-.18.82v2a2 2 0 0 0 2 2h4c.293 0 .569-.066.82-.18a1.99 1.99 0 0 0 .18-.82v-2a2 2 0 0 0-2-2z"
+    ></path>
+    <path fill="#c2c5c5" d="M28.789 5H3.22L.011 7.991H.003V8h32v-.009h-.007z" class="colorC2C5C5"></path>
+    <path class="tent-butt-red" fill="#e2574c"
+          d="m11.003 5-1 3v2.996h2V8l1-3zM31.996 7.991 28.789 5h-1.785l3 3v2.996h1a1 1 0 0 0 1-1.002V8l-.006-.009h-.002zM23.003 5l2 3v2.996h2V8l-2-3zM7.003 5l-2 3v2.996h2V8l2-3zM1.003 10.996h1V8l3-3H3.22L.011 7.991H.009L.003 8v1.994c0 .553.45 1.002 1 1.002zM15.003 5h2v5.996h-2zM22.003 10.996V8l-1-3h-2l1 3v2.996z"
+    ></path>
+    <path fill="#c04a40"
+          d="M7.003 5l-2 3h2l2-3zM31.996 7.991L28.789 5h-1.786l3 3h2l-.005-.009zM15.003 5h2v3h-2zM11.003 5l-1 3h2l1-3zM23.003 5l2 3h2l-2-3zM19.003 5l1 3h2l-1-3zM5.003 5H3.22L.011 7.991H.009L.003 8h2z"
+    ></path>
+</svg>

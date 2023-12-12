@@ -1,0 +1,11 @@
+{
+  "name": "vue-shop",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#c4c4c4",
+  "description": "Wonderful Vue3 application",
+  "icons": [
+    { "src": "/src/assets/favicon/android-chrome-192x192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "/src/assets/favicon/android-chrome-512x512.png", "type": "image/png", "sizes": "512x512" }
+  ]
+  }

@@ -6,7 +6,7 @@ import {API_BASE_URL} from "@/config";
 export default function () {
     const productData = ref(null);
     const category = computed(() => {
-        return productData.value.category.title | 1;
+        return productData.value.category.title;
     });
 
     const fetchStatus = reactive({
@@ -14,7 +14,7 @@ export default function () {
         isFailed: false,
     })
 
-    const fetchProduct = (productId) => {
+    const fetchProduct = (productId: number) => {
         fetchStatus.isLoading = true;
         fetchStatus.isFailed = false;
         axios

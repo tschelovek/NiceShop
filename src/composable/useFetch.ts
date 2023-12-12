@@ -1,12 +1,13 @@
-import {ref, watchEffect, toValue} from 'vue'
-import axios from "axios/index";
+import {ref, watchEffect, toValue, Ref} from 'vue'
+import axios from "axios";
+import {ReactiveVariable} from "vue/macros";
 
 interface IUseFetch {
-    url: string,
-    params?: {}
+    url: string | Ref<string>,
+    params?: {} | ReactiveVariable<object>
 }
 
-export function useFetch({url, params}:IUseFetch) {
+export function useFetch( { url, params }:IUseFetch ) {
     const data = ref(null)
     const isLoading = ref(false);
     const isFailed = ref(false);
@@ -25,7 +26,6 @@ export function useFetch({url, params}:IUseFetch) {
             })
             .catch(() => (isFailed.value = true))
             .finally(() => (isLoading.value = false));
-
     }
 
     watchEffect(() => {

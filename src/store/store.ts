@@ -1,6 +1,6 @@
 import { InjectionKey } from 'vue';
 import { createStore, useStore as baseUseStore, Store } from 'vuex';
-import { API_BASE_URL } from '../config';
+import { API_BASE_URL } from '@/config';
 import axios from 'axios';
 
 export interface IState {
@@ -37,7 +37,7 @@ type TCartProductsDataItem = {
     quantity: number,
 }
 
-export const key: InjectionKey<Store<IState>> = Symbol()
+export const key: InjectionKey<Store<IState>> = Symbol();
 
 export const store = createStore<IState>({
     state: {
@@ -150,7 +150,7 @@ export const store = createStore<IState>({
                     }
 
                     context.commit('updateCartProductsData', response.data.items);
-                    context.commit('syncCartProducts');
+                    // context.commit('syncCartProducts');
                 }));
         },
         loadCategories(context) {
