@@ -54,23 +54,25 @@ const page = ref(1);
 const productsPerPage = ref(6);
 
 const { productsData, isLoading, isFailed} = useProducts({
-  page: toValue(page),
+  page: page,
+  limit: productsPerPage,
   colorId: filter.filterColorId,
   categoryId: filter.filterCategoryId,
   minPrice: filter.filterPriceFrom,
   maxPrice: filter.filterPriceTo
 });
 
-const productsOnPage = () => {
-  return productsData
-      ? productsData.items.map((product) => ({
+
+const productsOnPage = computed(() => {
+  return productsData.value
+      ? toValue(productsData)['items'].map((product) => ({
         ...product,
         image: product.image.file.url,
       }))
       : [];
-};
+});
 const countProducts = computed(() => {
-  return productsData ? toValue(productsData)?.pagination.total : 0;
+  return productsData.value ? productsData.value['pagination']['total'] : 0
 });
 
 </script>

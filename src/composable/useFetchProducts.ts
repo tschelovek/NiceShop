@@ -1,17 +1,17 @@
 import {API_BASE_URL} from "@/config";
-import {reactive} from "vue";
+import {reactive, Ref} from "vue";
 import {useFetch} from "@/composable/useFetch";
 
 interface IFetchProductsParams {
-    page?: number;
-    limit?: number;
-    colorId: number;
-    categoryId: number;
-    minPrice: number;
-    maxPrice: number;
+    page: number | Ref<number>;
+    limit: number | Ref<number>;
+    colorId?: number | Ref<number>;
+    categoryId?: number | Ref<number>;
+    minPrice?: number | Ref<number>;
+    maxPrice?: number | Ref<number>;
 }
 
-interface IProductsData {
+export interface IProductsData {
     items: [
         {
             id: number,
@@ -35,7 +35,7 @@ interface IProductsData {
                 }[]
         }
     ],
-    pagination?: {
+    pagination: {
         page: number,
         pages: number,
         total: number
@@ -75,7 +75,11 @@ export default function (filterParams: IFetchProductsParams) {
     // const url = ref(`${API_BASE_URL}/api/products`)
     const params = reactive(filterParams)
 
-    const { data, isLoading, isFailed } = useFetch({
+    const { data, isLoading, isFailed }: {
+        data: Ref<IProductsData> | Ref<null>,
+        isLoading: Ref<boolean>,
+        isFailed: Ref<boolean>
+    } = useFetch({
         url: `${API_BASE_URL}/api/products`,
         params
     })

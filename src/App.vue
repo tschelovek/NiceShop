@@ -22,7 +22,7 @@ onMounted(() => {
     store.commit('updateUserAccessKey', {userAccessKey});
   }
 
-  store.dispatch('loadCart');
+  // store.dispatch('loadCart');
 })
 
 </script>
