@@ -39,3 +39,16 @@ export default function () {
         isSomeOpen,
     }
 }
+
+export function reverseWords(str: string): string {
+    const sliced = str.split(' ');
+    if (sliced.length < 2) {
+        throw new Error('Строка должна состоять из нескольких слов, разделённых пробелами')
+    }
+
+    sliced.map<string>(word => word.split('').reverse.join(''))
+
+    console.log(sliced)
+
+    throw new Error('Function not implemented');
+}

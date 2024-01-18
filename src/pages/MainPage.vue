@@ -2,42 +2,39 @@
   <main class="content container">
     <div class="content__top content__top--catalog">
       <h1 class="content__title">Чудо-магазин</h1>
-<!--      <span class="content__info"> {{ countProducts }} товара(-ов) </span>-->
+      <!--      <span class="content__info"> {{ countProducts }} товара(-ов) </span>-->
       <p>В дальнейшем тут будет ещё что-то. А пока только этот текст.</p>
-      <router-link :to="{ name: 'catalog'}">
-        Каталог
-      </router-link>
+      <router-link :to="{ name: 'catalog' }"> Каталог </router-link>
     </div>
 
-<!--    <div class="content__catalog">-->
-<!--      <ProductFilter-->
-<!--        v-model:price-from="filterPriceFrom"-->
-<!--        v-model:price-to="filterPriceTo"-->
-<!--        v-model:category-id="filterCategoryId"-->
-<!--        v-model:color-id="filterColorId"-->
-<!--      />-->
+    <!--    <div class="content__catalog">-->
+    <!--      <ProductFilter-->
+    <!--        v-model:price-from="filterPriceFrom"-->
+    <!--        v-model:price-to="filterPriceTo"-->
+    <!--        v-model:category-id="filterCategoryId"-->
+    <!--        v-model:color-id="filterColorId"-->
+    <!--      />-->
 
-<!--      <section class="catalog">-->
-<!--        <div v-if="productsIsLoading"><PreloaderDotsWave /></div>-->
-<!--        <div v-else-if="productsLoadingFailed">-->
-<!--          Произошла ошибка при загрузке-->
-<!--          <button @click.prevent="loadProducts">Попробовать ещё раз</button>-->
-<!--        </div>-->
-<!--        <ProductList v-else :products="productsOnPage" />-->
+    <!--      <section class="catalog">-->
+    <!--        <div v-if="productsIsLoading"><PreloaderDotsWave /></div>-->
+    <!--        <div v-else-if="productsLoadingFailed">-->
+    <!--          Произошла ошибка при загрузке-->
+    <!--          <button @click.prevent="loadProducts">Попробовать ещё раз</button>-->
+    <!--        </div>-->
+    <!--        <ProductList v-else :products="productsOnPage" />-->
 
-<!--        <BasePagination-->
-<!--          v-model:page="page"-->
-<!--          :count="countProducts"-->
-<!--          :per-page="productsPerPage"-->
-<!--        />-->
-<!--      </section>-->
-<!--    </div>-->
-
+    <!--        <BasePagination-->
+    <!--          v-model:page="page"-->
+    <!--          :count="countProducts"-->
+    <!--          :per-page="productsPerPage"-->
+    <!--        />-->
+    <!--      </section>-->
+    <!--    </div>-->
   </main>
 </template>
 
 <script>
-import ProductList from "@/components/ProductList.vue";
+import ProductList from "@/components/Product/ProductList.vue";
 import BasePagination from "@/components/BaseElements/BasePagination.vue";
 import ProductFilter from "@/components/ProductFilter.vue";
 import axios from "axios";

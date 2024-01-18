@@ -7,42 +7,44 @@
 
     <div class="content__catalog">
       <ProductFilter
-          v-model:price-from="filter.filterPriceFrom"
-          v-model:price-to="filter.filterPriceTo"
-          v-model:category-id="filter.filterCategoryId"
-          v-model:color-id="filter.filterColorId"
+        v-model:price-from="filter.filterPriceFrom"
+        v-model:price-to="filter.filterPriceTo"
+        v-model:category-id="filter.filterCategoryId"
+        v-model:color-id="filter.filterColorId"
       />
 
       <section class="catalog">
         <div v-if="isLoading"><PreloaderDotsWave /></div>
         <div v-else-if="isFailed">
           Произошла ошибка при загрузке
-<!--          <button @click.prevent="fetchProducts">Попробовать ещё раз</button>-->
+          <!-- <button @click.prevent="fetchProducts">Попробовать ещё раз</button> -->
         </div>
-<!--        <ProductList v-else :products="productsOnPage" />-->
-
+        <ProductList v-else :products="productsOnPage" />
         <BasePagination
-            v-model:page="page"
-            :count="countProducts"
-            :per-page="productsPerPage"
+          v-model:page="page"
+          :count="countProducts"
+          :per-page="productsPerPage"
         />
       </section>
     </div>
   </main>
-
 </template>
 
 <script setup lang="ts">
 import BasePagination from "@/components/BaseElements/BasePagination.vue";
-import ProductList from "@/components/ProductList.vue";
+import ProductList from "@/components/Product/ProductList.vue";
 import PreloaderDotsWave from "@/components/PreloaderDotsWave.vue";
 import ProductFilter from "@/components/ProductFilter.vue";
-import {computed, reactive, ref, toValue, unref} from "vue";
-import {useStore} from "@/store/store";
-import useProducts from "@/composable/useFetchProducts";
+import { Ref, computed, reactive, ref, toValue } from "vue";
+/* import {useStore} from "@/store/store";*/
+import useProducts, { ProductsData } from "@/composable/useFetchProducts";
+import formatNumber from "@/helpers/formatNumber";
 
-const store = useStore();
+export interface ProductsOnPage extends ProductsData {
+  image: string;
+}
 
+/* const store = useStore();*/
 const filter = reactive({
   filterPriceFrom: 0,
   filterPriceTo: 0,
@@ -50,30 +52,28 @@ const filter = reactive({
   filterColorId: 0,
 });
 
-const page = ref(1);
-const productsPerPage = ref(6);
+const page: Ref<number> = ref(1);
+const productsPerPage: Ref<number> = ref(6);
 
-const { productsData, isLoading, isFailed} = useProducts({
+const { productsData, isLoading, isFailed } = useProducts({
   page: page,
   limit: productsPerPage,
   colorId: filter.filterColorId,
   categoryId: filter.filterCategoryId,
   minPrice: filter.filterPriceFrom,
-  maxPrice: filter.filterPriceTo
+  maxPrice: filter.filterPriceTo,
 });
-
 
 const productsOnPage = computed(() => {
   return productsData.value
-      ? toValue(productsData)['items'].map((product) => ({
+    ? toValue(productsData)["items"].map((product) => ({
         ...product,
         image: product.image.file.url,
+        pricePretty: formatNumber(product.price),
       }))
-      : [];
+    : [];
 });
-const countProducts = computed(() => {
-  return productsData.value ? productsData.value['pagination']['total'] : 0
+const countProducts = computed<number>(() => {
+  return productsData.value ? productsData.value["pagination"]["total"] : 0;
 });
-
 </script>
-
