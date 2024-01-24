@@ -1,19 +1,24 @@
 import { ref, watchEffect, toValue, Ref, toRef } from "vue";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { ReactiveVariable } from "vue/macros";
-import { ProductsData } from "@/composable/useFetchProducts";
 
-interface IUseFetch {
+interface UseFetchParams {
   url: string | Ref<string>;
   params?: {} | ReactiveVariable<object>;
 }
 
-type TData = Ref<null | ProductsData>;
+export type useFetch<T> = {
+  data: Ref<T | null>;
+  isLoading: Ref<boolean>;
+  isFailed: Ref<boolean>;
+};
 
-export function useFetch({ url, params }: IUseFetch) {
-  const data: TData = ref(null);
-  const isLoading = ref(false);
-  const isFailed = ref(false);
+// type Data = Ref<null | ProductsData>;
+
+export function useFetch<T>({ url, params }: UseFetchParams): useFetch<T> {
+  const data: Ref<T | null> = ref(null);
+  const isLoading: Ref<boolean> = ref(false);
+  const isFailed: Ref<boolean> = ref(false);
   toRef(params);
 
   const fetchData = () => {
@@ -25,7 +30,7 @@ export function useFetch({ url, params }: IUseFetch) {
       .get(toValue(url), {
         params: { ...toValue(params) },
       })
-      .then((response) => {
+      .then((response: AxiosResponse<T>) => {
         data.value = response.data;
       })
       .catch(() => (isFailed.value = true))

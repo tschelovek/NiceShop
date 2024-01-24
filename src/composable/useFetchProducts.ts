@@ -2,16 +2,16 @@ import { API_BASE_URL } from "@/config";
 import { reactive, Ref } from "vue";
 import { useFetch } from "@/composable/useFetch";
 
-interface FetchProductsParams {
+type FetchProductsParams = {
   page: number | Ref<number>;
   limit: number | Ref<number>;
   colorId?: number | Ref<number>;
   categoryId?: number | Ref<number>;
   minPrice?: number | Ref<number>;
   maxPrice?: number | Ref<number>;
-}
+};
 
-export interface ProductsData {
+export type ProductsData = {
   items: [
     {
       id: number;
@@ -39,52 +39,19 @@ export interface ProductsData {
     pages: number;
     total: number;
   };
-}
+};
 
-export default function (filterParams: FetchProductsParams) {
-  // const productsData = ref(null);
-  //
-  // const fetchStatus = reactive({
-  //     isLoading: false,
-  //     isFailed: false,
-  // });
-  //
-  // const fetchProducts = (params: IFetchProductsParams) => {
-  //     fetchStatus.isLoading = true;
-  //     fetchStatus.isFailed = false;
-  //     axios
-  //         .get(`${API_BASE_URL}/api/products`, {
-  //             params: {...params}
-  //         })
-  //         .then((response) => {
-  //             productsData.value = response.data
-  //         })
-  //         .catch(() => (fetchStatus.isFailed = true))
-  //         .then(() => (fetchStatus.isLoading = false));
-  // };
-  //
-  // return {
-  //     products: productsData,
-  //     status: fetchStatus,
-  //
-  //     fetchProducts,
-  // }
-  // const productsData = ref(null)
-  // const url = ref(`${API_BASE_URL}/api/products`)
+export type useFetchProducts = useFetch<ProductsData>;
+
+export function useFetchProducts(
+  filterParams: FetchProductsParams
+): useFetchProducts {
   const params = reactive(filterParams);
 
-  const {
-    data,
-    isLoading,
-    isFailed,
-  }: {
-    data: Ref<ProductsData> | Ref<null>;
-    isLoading: Ref<boolean>;
-    isFailed: Ref<boolean>;
-  } = useFetch({
+  const { data, isLoading, isFailed } = useFetch<ProductsData>({
     url: `${API_BASE_URL}/api/products`,
     params,
   });
 
-  return { productsData: data, isLoading, isFailed };
+  return { data, isLoading, isFailed };
 }
