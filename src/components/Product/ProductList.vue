@@ -1,11 +1,6 @@
 <template>
   <ul class="catalog__list">
     <ProductItems v-bind="$attrs" class="catalog__item" />
-    <!-- <ProductItem
-      v-for="product in products"
-      :product="product"
-      :key="product.id"
-    /> -->
   </ul>
 </template>
 

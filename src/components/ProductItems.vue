@@ -17,9 +17,9 @@
     <span class="catalog__price"> {{ product.pricePretty }} ₽ </span>
     <ColorOptions class="colors colors--black" :colors="product.colors" />
   </li>
-  <BaseModal v-model:open="isQuickViewOpen">
+  <!-- <BaseModal v-model:open="isQuickViewOpen">
     <ProductQuickView :product-id="currentProductId" />
-  </BaseModal>
+  </BaseModal> -->
 </template>
 
 <script lang="ts">

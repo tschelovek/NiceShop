@@ -43,11 +43,10 @@
 import { ComputedRef, computed, toValue } from "vue";
 
 const props = defineProps(["count", "perPage"]);
-const modelPage = defineModel("page");
+const modelPage = defineModel<number>("page");
 
 const currentPage: ComputedRef<number> = computed((): number => {
-  // return toValue(props.page);
-  return modelPage.value;
+  return modelPage.value || 0;
 });
 const pages = computed(() => {
   return Math.ceil(props.count / props.perPage);

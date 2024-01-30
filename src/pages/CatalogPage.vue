@@ -7,11 +7,12 @@
 
     <div class="content__catalog">
       <ProductFilter
-        v-model:price-from="filter.filterPriceFrom"
-        v-model:price-to="filter.filterPriceTo"
-        v-model:category-id="filter.filterCategoryId"
-        v-model:color-id="filter.filterColorId"
+        v-model:price-from="priceFrom"
+        v-model:price-to="priceTo"
+        v-model:category-id="categoryId"
+        v-model:color-id="colorId"
       />
+      <!-- <ProductFilter v-model:filter="filter" /> -->
 
       <section class="catalog">
         <div v-if="isLoading"><PreloaderDotsWave /></div>
@@ -36,37 +37,50 @@ import ProductList from "@/components/Product/ProductList.vue";
 import PreloaderDotsWave from "@/components/PreloaderDotsWave.vue";
 import ProductFilter from "@/components/ProductFilter.vue";
 import { Ref, computed, reactive, ref, toValue } from "vue";
-/* import {useStore} from "@/store/store";*/
-import useProducts, { ProductsData } from "@/composable/useFetchProducts";
+import { ProductsData, useFetchProducts } from "@/composable/useFetchProducts";
 import formatNumber from "@/helpers/formatNumber";
 
 export interface ProductsOnPage extends ProductsData {
   image: string;
 }
+export interface FilterParams {
+  priceFrom: number;
+  priceTo: number;
+  categoryId: number;
+  colorId: number;
+}
 
-/* const store = useStore();*/
-const filter = reactive({
-  filterPriceFrom: 0,
-  filterPriceTo: 0,
-  filterCategoryId: 0,
-  filterColorId: 0,
+const filter: FilterParams = reactive({
+  priceFrom: 0,
+  priceTo: 0,
+  categoryId: 0,
+  colorId: 0,
 });
+
+const priceFrom: Ref<number> = ref(0);
+const priceTo: Ref<number> = ref(0);
+const categoryId: Ref<number> = ref(0);
+const colorId: Ref<number> = ref(0);
 
 const page: Ref<number> = ref(1);
 const productsPerPage: Ref<number> = ref(6);
 
-const { productsData, isLoading, isFailed } = useProducts({
+const {
+  data: productsData,
+  isLoading,
+  isFailed,
+} = useFetchProducts({
   page: page,
   limit: productsPerPage,
-  colorId: filter.filterColorId,
-  categoryId: filter.filterCategoryId,
-  minPrice: filter.filterPriceFrom,
-  maxPrice: filter.filterPriceTo,
+  colorId: colorId,
+  categoryId: categoryId,
+  minPrice: priceFrom,
+  maxPrice: priceTo,
 });
 
 const productsOnPage = computed(() => {
   return productsData.value
-    ? toValue(productsData)["items"].map((product) => ({
+    ? toValue(productsData)!["items"].map((product) => ({
         ...product,
         image: product.image.file.url,
         pricePretty: formatNumber(product.price),
