@@ -2,7 +2,7 @@ import { API_BASE_URL } from "@/config";
 import { useFetch } from "./useFetch";
 import axios from "axios";
 
-type Colors = {
+export type Colors = {
   items: {
     id: number;
     title: string;
@@ -10,9 +10,9 @@ type Colors = {
   }[];
 };
 
-export type useFetchColors = useFetch<Colors>;
+// export type useFetchColors = useFetch<Colors>;
 
-export function useFetchColors() {
+export function useFetchColors(): Promise<Colors> {
   // const { data, isLoading, isFailed }: useFetchColors = useFetch<Colors>({
   //   url: `${API_BASE_URL}/api/colors`,
   // });

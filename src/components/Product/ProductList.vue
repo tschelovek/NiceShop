@@ -5,5 +5,5 @@
 </template>
 
 <script setup lang="ts">
-import ProductItems from "@/components/ProductItems.vue";
+import ProductItems from "@/components/Product/ProductItems.vue";
 </script>

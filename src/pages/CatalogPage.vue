@@ -7,7 +7,7 @@
 
     <div class="content__catalog">
       <ProductFilter
-        v-model:price-from="priceFrom"
+        v-model:price-from="filter.priceFrom"
         v-model:price-to="priceTo"
         v-model:category-id="categoryId"
         v-model:color-id="colorId"
